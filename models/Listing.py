@@ -11,7 +11,6 @@ class Listing(db.Entity):
     price = Required(float)
     postage = Required(float)
     num_available = Required(int)
-    num_sold = Required(int)
     categories = Set('Category')
     likes = Optional(int)
     user = Required('User', reverse='listings')
@@ -25,12 +24,11 @@ class ListingSchema(Schema):
     price = fields.Float(required=True)
     postage = fields.Float(required=True)
     num_available = fields.Int(required=True)
-    num_sold = fields.Int(required=True)
     categories = fields.Nested('CategorySchema', many=True, dump_only=True, exclude=('listings', ))
     category_ids = fields.List(fields.Int(), load_only=True)
     likes = fields.Int()
-    user = fields.Nested('UserSchema', exclude=('listings', 'email'))
-    bought_by = fields.Nested('UserSchema', exclude=('listings', 'email'), many=True, required=False)
+    user = fields.Nested('UserSchema', exclude=('listings', 'email', 'purchases'))
+    bought_by = fields.Nested('UserSchema', exclude=('listings', 'email', 'purchases'), many=True, required=False)
     bought_by_ids = fields.List(fields.Int(), load_only=True)
 
 

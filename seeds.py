@@ -42,7 +42,6 @@ with db_session():
         price=10,
         postage=3.51,
         num_available=10,
-        num_sold=0,
         categories=[household],
         user=user1,
         bought_by=user2
@@ -55,7 +54,6 @@ with db_session():
         price=60,
         postage=20.00,
         num_available=1,
-        num_sold=0,
         categories=[household, furniture],
         user=user2,
         bought_by=''

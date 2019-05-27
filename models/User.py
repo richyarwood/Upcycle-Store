@@ -38,8 +38,8 @@ class UserSchema(Schema):
     email = fields.Str(required=True)
     password = fields.Str(load_only=True)
     password_confirmation = fields.Str(load_only=True)
-    listings = fields.Nested('ListingSchema', many=True, exclude=('user',))
-    purchases = fields.Nested('ListingSchema', many=True, exclude=('bought_by', ), dump_only=True)
+    listings = fields.Nested('ListingSchema', many=True, exclude=('user', ))
+    purchases = fields.Nested('ListingSchema', many=True, exclude=('bought_by', 'categories'), dump_only=True)
 
     def generate_hash(self, plaintext):
         return bcrypt.hashpw(plaintext.encode('utf8'), bcrypt.gensalt(8)).decode('utf8')
