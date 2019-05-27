@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo|Open+Sans&display=swap');
+
+$primarycolor: #ff3b3f;
+$secondarycolor: #a9a9a9;
+$tertiarycolor: #efefef;
+
+$primaryfont: 'Arimo', sans-serif;
+$secondaryfont: 'Open Sans', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $secondaryfont;
+  background-color: $tertiarycolor;
+}
+
+main {
+  height: 100vh;
+}
+
+// BROWSE LISTINGS =============================
+
+section {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+}
+
+.listing-wrapper {
+  width: 350px;
+  height: 450px;
+  background-color: #fff;
+  border-right: solid 1px #efefef;
+}
+
+.listing-title {
+  font-family: $primaryfont;
+  font-size: 20px;
+  color: $primarycolor;
+  line-height: 1.2rem;
+}

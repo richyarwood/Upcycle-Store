@@ -19,10 +19,18 @@ class ListingIndex extends React.Component{
   render(){
     console.log(this.state.data)
     return(
-      <section className='section'>
+      <section className="columns is-multiline">
         {this.state.data.map(listing =>
-          <div key={listing.id}>
-            {listing.title}
+          <div key={listing.id} className="listing-wrapper column is-one-quarter">
+            <div>
+              <img src={listing.image} alt={listing.title} />
+            </div>
+            <div className="listing-title">
+              {listing.title}
+            </div>
+            <div>
+              £{listing.price}
+            </div>
           </div>
         )}
       </section>

@@ -3,10 +3,11 @@ import ListingIndex from '../listings/ListingIndex'
 
 const Home = () => {
   return(
-    <section className="section">
-      <h1>Hello</h1>
-      <ListingIndex />
-    </section>
+    <div className="container">
+      <div className="section">
+        <ListingIndex />
+      </div>
+    </div>
   )
 
 }

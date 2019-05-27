@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Home from './common/Home'
+import Home from './components/common/Home'
 
 import 'bulma'
+import './style.scss'
 
 class App extends React.Component{
 
