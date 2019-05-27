@@ -67,3 +67,18 @@ def update(listing_id):
         return jsonify({'message': 'Validation failed', 'errors': err.messages}), 422
 
     return schema.dumps(listing)
+
+#  DELETE A LISTING ============================================
+@router.route('listings/<int:listing_id>', methods=['DELETE'])
+@db_session
+@secure_route
+def delete(listing_id):
+    listing = Listing.get(id=listing_id)
+
+    if not listing:
+        abort(404)
+
+    listing.delete()
+    db.commit()
+
+    return '', 204
