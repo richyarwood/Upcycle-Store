@@ -10,7 +10,7 @@ class User(db.Entity):
     username = Required(str, unique=True)
     email = Required(str, unique=True)
     password_hash = Required(str)
-    listings = Set('Listing', reverse='created_by')
+    listings = Set('Listing', reverse='user')
     purchases = Set('Listing', reverse='bought_by')
 
     def is_password_valid(self, plaintext):
@@ -38,7 +38,7 @@ class UserSchema(Schema):
     email = fields.Str(required=True)
     password = fields.Str(load_only=True)
     password_confirmation = fields.Str(load_only=True)
-    listings = fields.Nested('ListingSchema', many=True, exclude=('created_by',), dump_only=True)
+    listings = fields.Nested('ListingSchema', many=True, exclude=('user',))
     purchases = fields.Nested('ListingSchema', many=True, exclude=('bought_by', ), dump_only=True)
 
     def generate_hash(self, plaintext):

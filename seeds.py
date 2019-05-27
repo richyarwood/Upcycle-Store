@@ -44,7 +44,7 @@ with db_session():
         num_available=10,
         num_sold=0,
         categories=[household],
-        created_by=user1,
+        user=user1,
         bought_by=user2
     )
 
@@ -57,7 +57,7 @@ with db_session():
         num_available=1,
         num_sold=0,
         categories=[household, furniture],
-        created_by=user2,
+        user=user2,
         bought_by=''
     )
 
