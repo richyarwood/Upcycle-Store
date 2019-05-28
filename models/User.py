@@ -40,7 +40,7 @@ class UserSchema(Schema):
     password_confirmation = fields.Str(load_only=True)
     listings = fields.Nested('ListingSchema', many=True, exclude=('user', ))
     purchases = fields.Nested('ListingSchema', many=True, exclude=('bought_by', 'categories'), dump_only=True)
-    cart_items = fields.Nested('CartItemSchema', many=True, exclude=('user', ))
+    cart_items = fields.Nested('CartItemSchema', many=True, exclude=('customer', ))
 
     def generate_hash(self, plaintext):
         return bcrypt.hashpw(plaintext.encode('utf8'), bcrypt.gensalt(8)).decode('utf8')
