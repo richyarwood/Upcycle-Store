@@ -3,6 +3,7 @@ from app import db
 from models.Category import Category
 from models.Listing import Listing
 from models.User import User, UserSchema
+from models.CartItem import CartItem
 
 db.drop_all_tables(with_all_data=True)
 db.create_tables()
@@ -57,6 +58,18 @@ with db_session():
         categories=[household, furniture],
         user=user2,
         bought_by=''
+    )
+
+    CartItem(
+        quantity=10,
+        user=user1,
+        item=armchairs
+    )
+
+    CartItem(
+        quantity=2,
+        user=user1,
+        item=flower_vase
     )
 
 db.commit()
