@@ -5,7 +5,7 @@ from app import db
 from models.Listing import Listing, ListingSchema
 from lib.secure_route import secure_route
 
-router = Blueprint(__name__, 'listings', url_prefix='/api')
+router = Blueprint(__name__, 'listings')
 
 # GET ALL LISTINGS =====================================
 @router.route('/listings', methods=['GET'])
