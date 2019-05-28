@@ -38,9 +38,9 @@ class UserSchema(Schema):
     email = fields.Str(required=True)
     password = fields.Str(load_only=True)
     password_confirmation = fields.Str(load_only=True)
-    listings = fields.Nested('ListingSchema', many=True, exclude=('user', ))
+    listings = fields.Nested('ListingSchema', many=True, exclude=('user', ), dump_only=True)
     purchases = fields.Nested('ListingSchema', many=True, exclude=('bought_by', 'categories'), dump_only=True)
-    cart_items = fields.Nested('CartItemSchema', many=True, exclude=('customer', ))
+    cart_items = fields.Nested('CartItemSchema', many=True, exclude=('user', ), dump_only=True)
 
     def generate_hash(self, plaintext):
         return bcrypt.hashpw(plaintext.encode('utf8'), bcrypt.gensalt(8)).decode('utf8')

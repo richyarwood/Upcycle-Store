@@ -30,8 +30,6 @@ with db_session():
         password_hash=user_schema.generate_hash('pass')
     )
 
-    cartitem1 = CartItem(quantity=10, )
-
     household = Category(name='Household')
     toys = Category(name='Toys')
     garden = Category(name='Garden')
@@ -53,8 +51,7 @@ with db_session():
         num_available=10,
         categories=[household],
         user=user1,
-        bought_by=user2,
-        cart_items=[]
+        bought_by=user2
     )
 
     armchairs = Listing(
@@ -66,8 +63,13 @@ with db_session():
         num_available=1,
         categories=[household, furniture],
         user=user2,
-        bought_by='',
-        cart_items=[]
+        bought_by=''
+    )
+
+    CartItem(
+        quantity=10,
+        user=user1,
+        item=armchairs
     )
 
 db.commit()

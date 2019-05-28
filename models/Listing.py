@@ -32,15 +32,7 @@ class ListingSchema(Schema):
     user = fields.Nested('UserSchema', exclude=('listings', 'email', 'purchases'))
     bought_by = fields.Nested('UserSchema', exclude=('listings', 'email', 'purchases'), many=True, required=False)
     bought_by_ids = fields.List(fields.Int(), load_only=True)
-    cart_items = fields.Nested('CartItemSchema', many=True, dump_only=True, exclude=('item', ))
-    cart_item_ids = fields.List(fields.Int(), load_only=True)
-
-    @post_load
-    def load_cart_items(self, data):
-        data['cart_items'] = [CartItem.get(id=item_id) for item_id in data['cart_items_ids']]
-        del data['cart_items_ids']
-
-        return data
+    cart_items = fields.Nested('CartItemSchema', many=True, exclude=('item', ), dump_only=True)
 
     @post_load
     def load_categories(self, data):
