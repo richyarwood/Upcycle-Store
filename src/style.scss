@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Muli|Open+Sans:700&display=swap');
+
+$primarycolor: #ff3b3f;
+$secondarycolor: #a9a9a9;
+$tertiarycolor: #efefef;
+
+$primaryfont: 'Open Sans', sans-serif;
+$secondaryfont: 'Muli', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $secondaryfont;
+  background-color: $tertiarycolor;
+}
+
+main {
+  height: 100vh;
+}
+
+// BROWSE LISTINGS =============================
+
+section {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+}
+
+.listing-wrapper {
+  width: 350px;
+  font-weight: normal;
+  background-color: #fff;
+  border-right: solid 1px #efefef;
+  padding: 40px;
+}
+
+.listing-title {
+  font-family: $primaryfont;
+  font-size: 20px;
+  color: $primarycolor;
+  line-height: 1.2rem;
+  margin: 5px 0 10px 0;
+}
+
+.listing-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.listing-postage {
+  font-size: 14px;
+  color: #a9a9a9;
+  margin-bottom: 10px;
+}
+
+.listing-description {
+  font-size: 14px;
+}
+
+.listing-categories {
+  font-size: 12px;
+  text-transform: lowercase;
+  color: $primarycolor;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 10px;
+
+  div.category:not(:last-child) {
+    padding-right: 8px;
+  }
+}

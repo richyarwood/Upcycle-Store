@@ -12,6 +12,7 @@ class User(db.Entity):
     password_hash = Required(str)
     listings = Set('Listing', reverse='user')
     purchases = Set('Listing', reverse='bought_by')
+    cart_items = Set('CartItem')
 
     def is_password_valid(self, plaintext):
         return bcrypt.checkpw(plaintext.encode('utf8'), self.password_hash.encode('utf8'))
@@ -31,7 +32,6 @@ class User(db.Entity):
 
         return token
 
-
 class UserSchema(Schema):
     id = fields.Int(dump_only=True)
     username = fields.Str(required=True)
@@ -40,6 +40,7 @@ class UserSchema(Schema):
     password_confirmation = fields.Str(load_only=True)
     listings = fields.Nested('ListingSchema', many=True, exclude=('user', ))
     purchases = fields.Nested('ListingSchema', many=True, exclude=('bought_by', 'categories'), dump_only=True)
+    cart_items = fields.Nested('CartItemSchema', many=True, exclude=('user', ))
 
     def generate_hash(self, plaintext):
         return bcrypt.hashpw(plaintext.encode('utf8'), bcrypt.gensalt(8)).decode('utf8')
