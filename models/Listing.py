@@ -31,7 +31,6 @@ class ListingSchema(Schema):
     bought_by = fields.Nested('UserSchema', exclude=('listings', 'email', 'purchases'), many=True, required=False)
     bought_by_ids = fields.List(fields.Int(), load_only=True)
 
-
     @post_load
     def load_categories(self, data):
         data['categories'] = [Category.get(id=category_id) for category_id in data['category_ids']]

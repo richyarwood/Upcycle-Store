@@ -9,18 +9,18 @@ db.create_tables()
 
 with db_session():
 
-    schema = UserSchema()
+    user_schema = UserSchema()
 
     user1 = User(
         username='Richie',
         email='richie@email.com',
-        password_hash=schema.generate_hash('pass')
+        password_hash=user_schema.generate_hash('pass')
     )
 
     user2 = User(
         username='Joanie',
         email='joanie@email.com',
-        password_hash=schema.generate_hash('pass')
+        password_hash=user_schema.generate_hash('pass')
     )
 
     household = Category(name='Household')
@@ -35,7 +35,7 @@ with db_session():
     bicycles = Category(name='Bicycles')
     furniture = Category(name='Furniture')
 
-    Listing(
+    flower_vase = Listing(
         title='Flower vase',
         image='https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
         description='A vase made from an old water bottle and painted white.',
@@ -47,7 +47,7 @@ with db_session():
         bought_by=user2
     )
 
-    Listing(
+    armchairs = Listing(
         title='Two modern style armchairs',
         image='https://images.unsplash.com/photo-1493150134366-cacb0bdc03fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
         description='Two 1960\'s armchairs reupholstered in a modern yellow fabric. Perfect for any living room.',

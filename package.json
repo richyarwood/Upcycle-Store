@@ -6,7 +6,8 @@
   "author": "Richard Yarwood <richyarwood@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "run:client": "webpack-dev-server --mode=development"
+    "run:client": "webpack-dev-server --mode=development",
+    "run:server": "pipenv run flask run --port 4000"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",

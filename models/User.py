@@ -31,7 +31,6 @@ class User(db.Entity):
 
         return token
 
-
 class UserSchema(Schema):
     id = fields.Int(dump_only=True)
     username = fields.Str(required=True)
