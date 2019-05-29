@@ -65,13 +65,19 @@ with db_session():
         user=user2,
     )
 
-    item = CartItem(
+    CartItem(
         quantity=1,
         user=user1,
         item=flower_vase
     )
 
-    item1 = CartItem(
+    CartItem(
+        quantity=1,
+        user=user1,
+        item=armchairs
+    )
+
+    CartItem(
         quantity=10,
         user=user2,
         item=armchairs
