@@ -11,4 +11,4 @@ class CartItemSchema(Schema):
     id = fields.Int(dump_only=True)
     quantity = fields.Int()
     user = fields.Nested('UserSchema', exclude=('cart_items', 'email', 'listings'))
-    item = fields.Nested('ListingSchema', exclude=('cart_items', 'user', 'categories'))
+    item = fields.Nested('ListingSchema', exclude=('cart_items', 'user', 'categories', 'description', 'num_available'))

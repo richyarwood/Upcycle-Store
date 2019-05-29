@@ -33,7 +33,7 @@ class ListingSchema(Schema):
 
     @post_load
     def load_cart_items(self, data):
-        data['cart_items'] = [CartItem.get(id=cart_item_id) for cart_item_id in data['cart_items_ids']]
+        data['cart_items'] = [CartItem.get(id=item_id) for item_id in data['cart_items_ids']]
         del data['cart_items_ids']
 
         return data

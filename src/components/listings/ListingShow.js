@@ -10,7 +10,10 @@ class ListingShow extends React.Component{
 
     this.state = {
       listing: null,
-      item: {}
+      item: {
+        quantity: null,
+        item: null
+      }
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -23,21 +26,26 @@ class ListingShow extends React.Component{
   }
 
   handleClick(e){
+
     const token = Auth.getToken()
 
-    this.setState({item: { quantity: 1, item: e.target.dataset.item_id }})
+    const id = e.target.dataset.itemid
+    const quantity = e.target.dataset.quantity
+    this.setState( { item: { quantity: quantity, item: id } } )
 
     axios.post('api/cart_items', this.state.item, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(console.log('Added'))
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+
   }
 
   render(){
     if(!this.state.listing) return null
-    console.log(this.state.listing)
     const {id, image, title, price, postage, description, user, num_available} = this.state.listing
-    console.log(this.state.listing)
+
+    console.log(this.state.item)
     return(
       <div className="container">
         <section className="wrapper">
@@ -60,11 +68,14 @@ class ListingShow extends React.Component{
                 <div className="add-basket-price">
                   £{price}
                 </div>
-                <div
-                  className="add-basket-button"
-                  data-item_id={id}
-                  onClick={this.handleClick}>
-                  <div className="add-basket-text">ADD TO BASKET</div>
+                <div className="add-basket-button">
+                  <div
+                    data-itemid={id}
+                    data-quantity="1"
+                    onClick={this.handleClick}
+                    className="add-basket-text">
+                    ADD TO BASKET
+                  </div>
                 </div>
                 <div>
                   Postage: £{postage}
