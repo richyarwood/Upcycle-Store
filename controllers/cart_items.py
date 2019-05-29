@@ -34,3 +34,15 @@ def create():
         return jsonify({'message': 'Validation failed', 'errors': err.messages}), 422
 
     return schema.dumps(cart_item), 201
+
+# GET USER CART ITEMS ======================================
+
+@router.route('/cart', methods=['GET'])
+@db_session
+@secure_route
+def get_cart():
+
+    schema = CartItemSchema(many=True)
+    usercart = CartItem.select(lambda user: user.user == g.current_user)
+
+    return schema.dumps(usercart)

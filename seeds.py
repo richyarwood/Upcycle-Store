@@ -50,26 +50,31 @@ with db_session():
         postage=3.51,
         num_available=10,
         categories=[household],
-        user=user1,
-        bought_by=user2
+        user=user1
+
     )
 
     armchairs = Listing(
         title='Two modern style armchairs',
         image='https://images.unsplash.com/photo-1493150134366-cacb0bdc03fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
-        description='Two 1960\'s armchairs reupholstered in a modern yellow fabric. Perfect for any living room.',
+        description='Two 1960s armchairs reupholstered in a modern yellow fabric. Perfect for any living room.',
         price=60,
         postage=20.00,
         num_available=1,
         categories=[household, furniture],
         user=user2,
-        bought_by=''
     )
 
-    CartItem(
-        quantity=10,
+    item = CartItem(
+        quantity=1,
         user=user1,
+        item=flower_vase
+    )
+
+    item1 = CartItem(
+        quantity=10,
+        user=user2,
         item=armchairs
     )
 
-db.commit()
+    db.commit()
