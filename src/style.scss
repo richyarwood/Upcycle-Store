@@ -24,8 +24,15 @@ main {
   background-color: $tertiarycolor;
 }
 
+h1 {
+  font-size: 40px;
+  font-family: $secondaryfont;
+  color: $primarycolor;
+}
+
 h2 {
   font-size: 20px;
+  font-family: $secondaryfont;
   color: $primarycolor;
 }
 
@@ -92,7 +99,7 @@ section {
 
 // LISTING SHOW ======================================
 
-.listing-show-wrapper {
+.wrapper {
   padding: 40px 60px;
 }
 
@@ -144,4 +151,27 @@ section {
 .add-basket-price {
   font-size: 40px;
   font-family: $secondaryfont;
+}
+
+// CART ============================================
+
+
+.cart-line-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  img {
+    height: 100px;
+    padding-right: 30px;
+  }
+
+  .cart-line-item-content {
+    font-size: 20px;
+    color: $primarycolor;
+
+    &.price{
+      color: #000;
+    }
+  }
 }
