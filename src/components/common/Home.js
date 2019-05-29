@@ -4,9 +4,7 @@ import ListingIndex from '../listings/ListingIndex'
 const Home = () => {
   return(
     <div className="container">
-      <div className="section">
-        <ListingIndex />
-      </div>
+      <ListingIndex />
     </div>
   )
 

@@ -4,6 +4,8 @@ $primarycolor: #ff3b3f;
 $secondarycolor: #a9a9a9;
 $tertiarycolor: #efefef;
 
+$box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
 $primaryfont: 'Open Sans', sans-serif;
 $secondaryfont: 'Muli', sans-serif;
 
@@ -14,17 +16,33 @@ $secondaryfont: 'Muli', sans-serif;
 body {
   font-family: $secondaryfont;
   background-color: $tertiarycolor;
+  height: 100vh;
 }
 
 main {
-  height: 100vh;
+  height: 100%;
+  background-color: $tertiarycolor;
+}
+
+h2 {
+  font-size: 20px;
+  color: $primarycolor;
+}
+
+// NAVBAR ======================================
+
+.navbar {
+  box-shadow: $box-shadow;
+  height: 100px;
+  margin-bottom: 50px;
 }
 
 // BROWSE LISTINGS =============================
 
 section {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: $box-shadow;
   background-color: #ffffff;
+  margin-bottom: 80px;
 }
 
 .listing-wrapper {
@@ -70,4 +88,60 @@ section {
   div.category:not(:last-child) {
     padding-right: 8px;
   }
+}
+
+// LISTING SHOW ======================================
+
+.listing-show-wrapper {
+  padding: 40px 60px;
+}
+
+.listing-show-title {
+  font-family: $secondaryfont;
+  font-size: 40px;
+  color: #ff3b3f;
+  padding-bottom: 20px;
+  line-height: 45px;
+}
+
+.listing-show-right-column {
+  margin-right: 70px;
+}
+
+.listing-show-item-info {
+  font-size: 14px;
+}
+
+.add-basket-container {
+  width: 100%;
+  height: 224px;
+  border: solid 1px #979797;
+  background-color: #d8d8d8;
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-basket-button {
+  width: 380px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #ff3b3f;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .add-basket-text {
+  font-family: $secondaryfont;
+  font-size: 40px;
+  color: #ffffff;
+  }
+}
+
+.add-basket-price {
+  font-size: 40px;
+  font-family: $secondaryfont;
 }
