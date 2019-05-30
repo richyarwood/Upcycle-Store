@@ -23,11 +23,10 @@ def index():
 @secure_route
 def create():
     schema = CartItemSchema()
-
+    print(g.current_user)
     try:
         data = schema.load(request.get_json())
-        data['user'] = g.current_user
-        cart_item = CartItem(**data)
+        cart_item = CartItem(**data, user=g.current_user)
         db.commit()
 
     except ValidationError as err:

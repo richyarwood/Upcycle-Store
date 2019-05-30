@@ -12,7 +12,6 @@ class Cart extends React.Component{
     }
   }
 
-
   componentDidMount(){
     const token = Auth.getToken()
 
@@ -20,10 +19,16 @@ class Cart extends React.Component{
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => this.setState({ data: res.data }))
+
+  }
+
+
+  calculatePrice(){
+    const prices = this.state.data.map(element => element.item.price)
+    return prices.reduce((a,b) => a+b, 0)
   }
 
   render(){
-
     return(
       <div className="container">
         <section className="wrapper">
@@ -52,7 +57,9 @@ class Cart extends React.Component{
                 </div>
               </div>
             )}
+            £{this.calculatePrice()}
           </div>
+
         </section>
       </div>
     )

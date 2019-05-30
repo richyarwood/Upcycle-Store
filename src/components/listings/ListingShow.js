@@ -20,7 +20,6 @@ class ListingShow extends React.Component{
   }
 
   componentDidMount(){
-
     axios.get(`/api/listings/${this.props.match.params.id}`)
       .then(res => this.setState({ listing: res.data }))
   }
@@ -29,13 +28,19 @@ class ListingShow extends React.Component{
 
     const token = Auth.getToken()
 
-    const id = e.target.dataset.itemid
-    const quantity = e.target.dataset.quantity
-    this.setState( { item: { quantity: quantity, item: id } } )
+    const item = parseInt(e.target.dataset.itemid)
+    console.log(item)
 
-    axios.post('api/cart_items', this.state.item, {
-      headers: { 'Authorization': `Bearer ${token}` }
+    axios.post('api/cart_items', {
+      quantity: 1,
+      item_id: item
+    }, {
+      headers:
+        {
+          'Authorization': `Bearer ${token}`
+        }
     })
+
       .then(res => console.log(res))
       .catch(err => console.log(err))
 
@@ -45,7 +50,6 @@ class ListingShow extends React.Component{
     if(!this.state.listing) return null
     const {id, image, title, price, postage, description, user, num_available} = this.state.listing
 
-    console.log(this.state.item)
     return(
       <div className="container">
         <section className="wrapper">
