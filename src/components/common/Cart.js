@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
 import axios from 'axios'
@@ -8,8 +9,7 @@ class Cart extends React.Component{
     super()
 
     this.state = {
-      data: [],
-      token: Auth.getToken()
+      data: []
     }
 
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
@@ -18,7 +18,7 @@ class Cart extends React.Component{
   componentDidMount(){
 
     axios.get('api/cart', {
-      headers: { 'Authorization': `Bearer ${this.state.token}` }
+      headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
       .then(res => this.setState({ data: res.data }))
       .catch(err => console.log(err))
@@ -37,11 +37,22 @@ class Cart extends React.Component{
   }
 
 
-  handleDeleteClick(e){
-    axios.delete(`/api/cart_items/${e.target.id}`, {
-      headers: { 'Authorization': `Bearer ${this.state.token}` }
+  handleDeleteClick({ target: { id } }){
+    axios.delete(`/api/cart_items/${id}`, {
+      headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
-      .then(res => console.log(res))
+      .then(() => {
+        const index = this.state.data.findIndex(item => item.id === parseInt(id))
+        console.log(this.state.data, index)
+        const data = [
+          ...this.state.data.slice(0, index),
+          ...this.state.data.slice(index+1)
+        ]
+
+        console.log(data)
+
+        this.setState({ data })
+      })
       .catch(err => console.log(err))
   }
 
@@ -61,7 +72,9 @@ class Cart extends React.Component{
                     <img src={cartItem.item.image} alt={cartItem.item.title} />
                   </div>
                   <div className="column is-two-fifths cart-line-item-content">
-                    {cartItem.item.title}
+
+                    <Link to={`/listings/${cartItem.item.id}`}>{cartItem.item.title}</Link>
+
                   </div>
                   <div className="column cart-line-item-title price">
                     Quantity: {cartItem.quantity}

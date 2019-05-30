@@ -36,6 +36,10 @@ h2 {
   color: $primarycolor;
 }
 
+a {
+  color: $primarycolor;
+}
+
  button.button {
    background-color: $primarycolor;
    color: #fff;
@@ -77,9 +81,6 @@ section {
   line-height: 1.2rem;
   margin: 5px 0 10px 0;
 
-  a {
-    color: $primarycolor;
-  }
 }
 
 .listing-price {
@@ -169,7 +170,6 @@ section {
 
 // CART ============================================
 
-
 .cart-line-item {
   display: flex;
   flex-direction: row;
@@ -201,4 +201,17 @@ section {
     display: flex;
     flex-direction: column;
   }
+}
+
+.form-wrapper {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 30px;
+  box-shadow: $box-shadow;
+  background-color: #ffffff;
+  margin-bottom: 80px;
+}
+
+.form-title {
+    padding-bottom: 20px;
 }

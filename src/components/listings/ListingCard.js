@@ -7,7 +7,7 @@ const ListingCard = (props) => {
   return(
     <div>
       <div>
-        <img src={props.image} alt={props.title} />
+        <Link to={`/listings/${props.id}`}>  <img src={props.image} alt={props.title} /></Link>
       </div>
       <div className="listing-title">
         <Link to={`/listings/${props.id}`}>{props.title}</Link>
