@@ -36,6 +36,15 @@ h2 {
   color: $primarycolor;
 }
 
+ button.button {
+   background-color: $primarycolor;
+   color: #fff;
+
+   &.check-out-button {
+     margin-top: 10px;
+   }
+ }
+
 // NAVBAR ======================================
 
 .navbar {
@@ -178,5 +187,18 @@ section {
     &.price{
       color: #000;
     }
+  }
+}
+
+.cart-total-checkout-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+  font-weight: bold;
+  font-size: 20px;
+
+  .cart-total-checkout {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -8,27 +8,46 @@ class Cart extends React.Component{
     super()
 
     this.state = {
-      data: []
+      data: [],
+      token: Auth.getToken()
     }
+
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
 
   componentDidMount(){
-    const token = Auth.getToken()
 
     axios.get('api/cart', {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { 'Authorization': `Bearer ${this.state.token}` }
     })
       .then(res => this.setState({ data: res.data }))
+      .catch(err => console.log(err))
 
   }
 
 
   calculatePrice(){
     const prices = this.state.data.map(element => element.item.price)
-    return prices.reduce((a,b) => a+b, 0)
+    return prices.reduce((a, b) => a + b, 0)
+  }
+
+  calculatePostage(){
+    const postage = this.state.data.map(element => element.item)
+    return postage.reduce((a, b) => a + b, 0)
+  }
+
+
+  handleDeleteClick(e){
+    axios.delete(`/api/cart_items/${e.target.id}`, {
+      headers: { 'Authorization': `Bearer ${this.state.token}` }
+    })
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   }
 
   render(){
+
+    console.log(this.state.price)
     return(
       <div className="container">
         <section className="wrapper">
@@ -51,15 +70,28 @@ class Cart extends React.Component{
                     £{cartItem.item.price}
                   </div>
                   <div className="column">
-                    <button className="button">DELETE</button>
+                    <button
+                      className="button"
+                      onClick={this.handleDeleteClick}
+                      id={cartItem.id}
+                    >
+                      DELETE
+                    </button>
                   </div>
 
                 </div>
               </div>
             )}
-            £{this.calculatePrice()}
-          </div>
 
+          </div>
+          <hr />
+          <div className="cart-total-checkout-wrapper">
+
+            <div className="cart-total-checkout">
+              Total: £{this.calculatePrice()}
+              <button className="button check-out-button">CHECKOUT</button>
+            </div>
+          </div>
         </section>
       </div>
     )
