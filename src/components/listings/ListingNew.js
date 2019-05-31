@@ -24,21 +24,22 @@ class ListingNew extends React.Component{
       .then(res => this.setState({ categories: res.data }))
   }
 
+  // HANDLES STATE CHANGE FOR FORM INPUT EXCEPT CATEGORIES ======
   handleChange(e){
-    const data = { ...this.state.data, [e.target.name]: e.target.value }
+    const categories = this.state.category_ids
+    const data = { ...this.state.data, [e.target.name]: e.target.value, category_ids: categories }
     this.setState({ data: data })
   }
 
 
   // HANDLES THE CATEGORY MULTISELECT ============================
   handleCategorySelect(e){
-    console.log(e.target.value, 'clicked')
     this.setState({
-      category_ids: [ ...this.state.category_ids, e.target.value ]
+      category_ids: [ ...this.state.category_ids, parseInt(e.target.value) ]
     })
   }
 
-
+  // FORM SUBMIT ================================================
   handleSubmit(e){
     const token = Auth.getToken()
 
@@ -53,6 +54,7 @@ class ListingNew extends React.Component{
       .catch(err => this.setState({ errors: err.response.data.error }))
   }
 
+  // APPLIES A-Z SORT FOR CATEGORIES ===========================
   sortedCategories() {
     return this.state.categories.sort((a, b) => {
       if (a.name === b.name) return 0
@@ -62,6 +64,7 @@ class ListingNew extends React.Component{
 
   render(){
     if(!this.state.categories) return null
+    console.log(this.state.data)
     console.log(this.state.category_ids)
     return(
       <div className="container">
