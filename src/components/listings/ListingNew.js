@@ -10,12 +10,13 @@ class ListingNew extends React.Component{
 
     this.state = {
       data: {},
-      errors: {},
-      categories: []
+      category_ids: [],
+      errors: {}
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleCategorySelect = this.handleCategorySelect.bind(this)
   }
 
   componentDidMount(){
@@ -27,6 +28,16 @@ class ListingNew extends React.Component{
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data: data })
   }
+
+
+  // HANDLES THE CATEGORY MULTISELECT ============================
+  handleCategorySelect(e){
+    console.log(e.target.value, 'clicked')
+    this.setState({
+      category_ids: [ ...this.state.category_ids, e.target.value ]
+    })
+  }
+
 
   handleSubmit(e){
     const token = Auth.getToken()
@@ -50,8 +61,8 @@ class ListingNew extends React.Component{
   }
 
   render(){
-    console.log(this.state.data)
     if(!this.state.categories) return null
+    console.log(this.state.category_ids)
     return(
       <div className="container">
         <div className="form-wrapper">
@@ -84,10 +95,11 @@ class ListingNew extends React.Component{
               <div className="field column is-one-half">
                 <label className="label">Categories</label>
                 <div className="control">
-                  <div className="select">
-                    <select name="category_ids" onChange={this.handleChange}>
+                  <div className="select is-multiple">
+                    <select name="category_ids"
+                      multiple size="5">
                       {this.sortedCategories().map(category =>
-                        <option key={category.id} value={category.id}>{category.name}</option>
+                        <option onClick={this.handleCategorySelect} key={category.id} value={category.id}>{category.name}</option>
                       )}
                     </select>
                   </div>
