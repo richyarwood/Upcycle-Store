@@ -34,6 +34,7 @@ h2 {
   font-size: 20px;
   font-family: $secondaryfont;
   color: $primarycolor;
+  margin-bottom: 20px;
 }
 
 a {
@@ -166,6 +167,19 @@ section {
 .add-basket-price {
   font-size: 40px;
   font-family: $secondaryfont;
+}
+
+.more-seller-title {
+  font-size: 18px;
+}
+
+.listing-show_image {
+  margin-bottom: 30px;
+}
+
+.seller-similar {
+  border-top: 1px solid $tertiarycolor;
+  border-bottom: 1px solid $tertiarycolor;
 }
 
 // CART ============================================

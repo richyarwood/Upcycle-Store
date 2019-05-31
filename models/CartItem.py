@@ -21,7 +21,3 @@ class CartItemSchema(Schema):
         del data['item_id']
 
         return data
-
-    # postload here to set the item_id and then DELETE
-
-    # delete - need to import from pony ORM
