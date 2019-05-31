@@ -52,7 +52,6 @@ with db_session():
     pets = Category(name='Pets')
     books = Category(name='Books')
     bicycles = Category(name='Bicycles')
-    furniture = Category(name='Furniture')
     kitchen = Category(name='Kitchen')
 
     flower_vase = Listing(

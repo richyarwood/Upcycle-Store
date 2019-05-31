@@ -61,3 +61,12 @@ def delete(item_id):
     db.commit()
 
     return '', 204
+
+# CHECKOUT AND EMPTY CART ===================================
+@router.route('/cart_checkout', methods=['DELETE'])
+@db_session
+@secure_route
+def clear_cart():
+
+    delete(item for item in CartItem if item.user == g.current_user)
+    return '', 204

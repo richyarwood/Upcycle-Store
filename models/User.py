@@ -10,7 +10,7 @@ class User(db.Entity):
     username = Required(str, unique=True)
     email = Required(str, unique=True)
     password_hash = Required(str)
-    listings = Set('Listing', reverse='user')
+    listings = Set('Listing')
     cart_items = Set('CartItem')
 
     def is_password_valid(self, plaintext):

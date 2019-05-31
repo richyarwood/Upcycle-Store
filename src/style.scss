@@ -203,6 +203,7 @@ section {
   }
 }
 
+ // FORMS ===============================
 .form-wrapper {
   max-width: 500px;
   margin: 20px auto;
@@ -214,4 +215,8 @@ section {
 
 .form-title {
     padding-bottom: 20px;
+}
+
+label {
+  padding-top: 15px;
 }

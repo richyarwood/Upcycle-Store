@@ -26,7 +26,7 @@ class ListingSchema(Schema):
     categories = fields.Nested('CategorySchema', many=True, dump_only=True, exclude=('listings', ))
     category_ids = fields.List(fields.Int(), load_only=True)
     likes = fields.Int()
-    user = fields.Nested('UserSchema', exclude=('listings', 'email'))
+    user = fields.Nested('UserSchema', exclude=('email', 'cart_items'))
 
     @post_load
     def load_categories(self, data):

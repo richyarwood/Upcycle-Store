@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import Auth from '../../lib/Auth'
 
@@ -22,14 +23,13 @@ class ListingShow extends React.Component{
   componentDidMount(){
     axios.get(`/api/listings/${this.props.match.params.id}`)
       .then(res => this.setState({ listing: res.data }))
+      .catch(err => console.log(err))
   }
 
+  // HANDLES CLICK ON THE ADD TO CART BUTTON ====================
   handleClick(e){
-
     const token = Auth.getToken()
-
     const item = parseInt(e.target.dataset.itemid)
-    console.log(item)
 
     axios.post('api/cart_items', {
       quantity: 1,
@@ -40,15 +40,16 @@ class ListingShow extends React.Component{
           'Authorization': `Bearer ${token}`
         }
     })
-
       .then(res => console.log(res))
       .catch(err => console.log(err))
-
   }
 
   render(){
     if(!this.state.listing) return null
     const {id, image, title, price, postage, description, user, num_available} = this.state.listing
+
+    console.log(this.props.data)
+    console.log(this.state.listing, 'listing')
 
     return(
       <div className="container">
@@ -56,7 +57,17 @@ class ListingShow extends React.Component{
           <div className="columns is-6">
             <div className="column is-two-fifths-desktop listing-show-right-column">
               <img src={image} alt={title}/>
-              <h2>Contact seller</h2>
+              <h2>All items from this seller</h2>
+              {this.state.listing.user.listings.map(listing =>
+                <div key={listing.id} className="columns">
+                  <div className="column is-one-third">
+                    <Link to={`/listings/${listing.id}`}><img src={listing.image} alt={listing.title}/></Link>
+                  </div>
+                  <div className="column">
+                    <Link to={`/listings/${listing.id}`}>{listing.title}</Link>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="column">
               <h1 className="listing-show-title">

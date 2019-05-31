@@ -13,16 +13,15 @@ class Cart extends React.Component{
     }
 
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this)
   }
 
   componentDidMount(){
-
     axios.get('api/cart', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
     })
       .then(res => this.setState({ data: res.data }))
       .catch(err => console.log(err))
-
   }
 
 
@@ -43,32 +42,47 @@ class Cart extends React.Component{
     })
       .then(() => {
         const index = this.state.data.findIndex(item => item.id === parseInt(id))
-        console.log(this.state.data, index)
         const data = [
           ...this.state.data.slice(0, index),
           ...this.state.data.slice(index+1)
         ]
-
-        console.log(data)
 
         this.setState({ data })
       })
       .catch(err => console.log(err))
   }
 
-  render(){
+  handleCheckoutClick(){
+    axios.delete('/api/cart_checkout', {
+      headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
+    })
+  }
 
-    console.log(this.state.price)
+  render(){
     return(
       <div className="container">
         <section className="wrapper">
           <h1>Cart</h1>
           <div className="cart-line-items-wrapper">
+            <div className="columns">
+              <div className="column is-one-fifth">
+              </div>
+              <div className="column is-two-fifths">
+              </div>
+              <div className="column">
+                <strong>Quantity</strong>
+              </div>
+              <div className="column">
+                <strong>Price</strong>
+              </div>
+              <div className="column">
+              </div>
+            </div>
             {this.state.data.map(cartItem =>
               <div key={cartItem.id}>
                 <hr />
                 <div className="columns cart-line-item">
-                  <div className="column">
+                  <div className="column is-one-fifth">
                     <img src={cartItem.item.image} alt={cartItem.item.title} />
                   </div>
                   <div className="column is-two-fifths cart-line-item-content">
@@ -77,7 +91,7 @@ class Cart extends React.Component{
 
                   </div>
                   <div className="column cart-line-item-title price">
-                    Quantity: {cartItem.quantity}
+                    {cartItem.quantity}
                   </div>
                   <div className="column cart-line-item-title price">
                     £{cartItem.item.price}
@@ -102,7 +116,10 @@ class Cart extends React.Component{
 
             <div className="cart-total-checkout">
               Total: £{this.calculatePrice()}
-              <button className="button check-out-button">CHECKOUT</button>
+              <button
+                className="button check-out-button" onClick={this.handleCheckoutClick}>
+                  CHECKOUT
+              </button>
             </div>
           </div>
         </section>

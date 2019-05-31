@@ -10,7 +10,6 @@ class ListingNew extends React.Component{
 
     this.state = {
       data: {},
-      category_ids: [],
       errors: {}
     }
 
@@ -26,17 +25,19 @@ class ListingNew extends React.Component{
 
   // HANDLES STATE CHANGE FOR FORM INPUT EXCEPT CATEGORIES ======
   handleChange(e){
-    const categories = this.state.category_ids
-    const data = { ...this.state.data, [e.target.name]: e.target.value, category_ids: categories }
+    const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data: data })
   }
 
 
   // HANDLES THE CATEGORY MULTISELECT ============================
   handleCategorySelect(e){
-    this.setState({
-      category_ids: [ ...this.state.category_ids, parseInt(e.target.value) ]
-    })
+    const categoryIds = Array.from(new Set([
+      ...this.state.data.category_ids,
+      parseInt(e.target.value)
+    ]))
+    const data = { ...this.state.data, category_ids: categoryIds }
+    this.setState({ data })
   }
 
   // FORM SUBMIT ================================================
@@ -96,11 +97,11 @@ class ListingNew extends React.Component{
             <div className="columns">
 
               <div className="field column is-one-half">
-                <label className="label">Categories</label>
+                <label className="label">Categories<br /> (select one or more)</label>
                 <div className="control">
                   <div className="select is-multiple">
                     <select name="category_ids"
-                      multiple size="5">
+                      multiple size="6">
                       {this.sortedCategories().map(category =>
                         <option onClick={this.handleCategorySelect} key={category.id} value={category.id}>{category.name}</option>
                       )}
@@ -113,7 +114,8 @@ class ListingNew extends React.Component{
                 <label className="label">Number available</label>
                 <div className="control">
                   <div className="select">
-                    <select name="num_available" onChange={this.handleChange}>
+                    <select name="num_available" value="selectone" onChange={this.handleChange}>
+                      <option value="selectone" disabled>Select one</option>
                       <option value="1">1</option>
                       <option value="5">5</option>
                       <option value="10">10</option>
@@ -122,13 +124,6 @@ class ListingNew extends React.Component{
                     </select>
                   </div>
                 </div>
-              </div>
-
-            </div>
-
-            <div className="columns">
-
-              <div className="field column is-one-half">
                 <label className="label">Price (£s)</label>
                 <div className="control">
                   <input
@@ -138,8 +133,7 @@ class ListingNew extends React.Component{
                     onChange={this.handleChange}
                   />
                 </div>
-              </div>
-              <div className="field column is-one-half">
+
                 <label className="label">Postage (£s)</label>
                 <div className="control">
                   <input
@@ -150,6 +144,7 @@ class ListingNew extends React.Component{
                   />
                 </div>
               </div>
+
             </div>
 
             <div className="field">
