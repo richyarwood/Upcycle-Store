@@ -55,7 +55,33 @@ a {
 .navbar {
   box-shadow: $box-shadow;
   height: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+}
+
+// FILTERS =====================================
+
+.filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  margin: auto;
+  margin-bottom: 30px;
+  width: 70%;
+
+  .filter-button {
+    padding: 3px 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 1px solid $primarycolor;
+    margin: 5px 10px;
+
+    &.highlighted {
+      background-color: $primarycolor;
+      color: #fff;
+    }
+  }
 }
 
 // BROWSE LISTINGS =============================
