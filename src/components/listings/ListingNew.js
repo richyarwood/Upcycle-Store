@@ -52,7 +52,7 @@ class ListingNew extends React.Component{
         }
     })
       .then(() => this.props.history.push('/'))
-      .catch(err => this.setState({ errors: err.response.data.error }))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
   // APPLIES A-Z SORT FOR CATEGORIES ===========================
@@ -82,6 +82,7 @@ class ListingNew extends React.Component{
                   onChange={this.handleChange}
                 />
               </div>
+              {this.state.errors.title && <div className="help is-danger">{this.state.errors.title}</div>}
             </div>
             <div className="field">
               <label className="label">Image url</label>
@@ -93,6 +94,7 @@ class ListingNew extends React.Component{
                   onChange={this.handleChange}
                 />
               </div>
+              {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
             </div>
             <div className="columns">
 
@@ -109,6 +111,7 @@ class ListingNew extends React.Component{
                   </div>
                 </div>
               </div>
+              {this.state.errors.category_ids && <div className="help is-danger">{this.state.errors.category_ids}</div>}
 
               <div className="field column is-one-half">
                 <label className="label">Number available</label>
@@ -124,6 +127,7 @@ class ListingNew extends React.Component{
                     </select>
                   </div>
                 </div>
+                {this.state.errors.num_available && <div className="help is-danger">{this.state.errors.num_available}</div>}
                 <label className="label">Price (£s)</label>
                 <div className="control">
                   <input
@@ -133,7 +137,7 @@ class ListingNew extends React.Component{
                     onChange={this.handleChange}
                   />
                 </div>
-
+                {this.state.errors.price && <div className="help is-danger">{this.state.errors.price}</div>}
                 <label className="label">Postage (£s)</label>
                 <div className="control">
                   <input
@@ -143,10 +147,9 @@ class ListingNew extends React.Component{
                     onChange={this.handleChange}
                   />
                 </div>
+                {this.state.errors.postage && <div className="help is-danger">{this.state.errors.postage}</div>}
               </div>
-
             </div>
-
             <div className="field">
               <label className="label">Description</label>
               <div className="control">
@@ -157,6 +160,7 @@ class ListingNew extends React.Component{
                   onChange={this.handleChange}
                 />
               </div>
+              {this.state.errors.description && <div className="help is-danger">{this.state.errors.description}</div>}
             </div>
             <button className="button">Add listing</button>
           </form>

@@ -8,7 +8,8 @@ class Filter extends React.Component{
     super()
 
     this.state = {
-      data: []
+      data: [],
+      errors: {}
     }
   }
 
