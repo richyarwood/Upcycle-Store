@@ -58,6 +58,24 @@ a {
   margin-bottom: 30px;
 }
 
+// HOME AND FOOTER =============================
+
+.home-hero {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 50px;
+}
+
+.home-box {
+  background-color: rgba(255,255,255,0.7);
+  padding: 30px;
+}
+
+.footer {
+  margin-top: 50px;
+}
+
 // FILTERS =====================================
 
 .filter-wrapper {
