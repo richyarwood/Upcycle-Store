@@ -56,6 +56,21 @@ a {
   box-shadow: $box-shadow;
   height: 100px;
   margin-bottom: 30px;
+
+  a.navbar-item {
+    color: $primarycolor;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  margin-right: 10px;
 }
 
 // HOME AND FOOTER =============================
@@ -207,11 +222,12 @@ section {
 }
 
 .add-basket-button {
-  width: 380px;
+  max-width: 380px;
   height: 80px;
   border-radius: 10px;
   background-color: #ff3b3f;
   margin: 10px 0;
+  padding: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;

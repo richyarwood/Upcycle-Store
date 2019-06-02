@@ -24,19 +24,7 @@ class Home extends React.Component{
     console.log(this.state.data)
     return(
       <div>
-        {this.state.data.map(listing =>
-          <div key={listing.id} className="hero is-medium home-hero" style={{ backgroundImage: `url(${listing.image})` }}>
-            <div className="hero-body">
-              <div className="container home-box">
-                <h1 className="home-title">
-                  <Link to={`/listings/${listing.id}`}>{listing.title}</Link>
-                </h1>
-                <div className="home-description">
-                  {listing.description}
-                </div>
-              </div>
-            </div>
-          </div>).slice(-1)}
+
 
         <section className="hero is-danger home-section">
           <div className="hero-body">
@@ -44,7 +32,7 @@ class Home extends React.Component{
               <h1 className="title">
                 Start selling your upcycled creations
               </h1>
-              <button className="button">Add a listing now</button>
+              <Link to='/sell'><button className="button">Add a listing now</button></Link>
             </div>
           </div>
         </section>
@@ -56,7 +44,7 @@ class Home extends React.Component{
               <div key={listing.id} className="listing-wrapper column is-one-quarter">
                 <ListingCard {...listing} />
               </div>
-            ).slice(-6, -2)}
+            ).slice(-5, -1)}
           </section>
           <div className="more-link">
             <button className="button">

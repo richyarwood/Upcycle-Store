@@ -33,8 +33,8 @@ class Navbar extends React.Component {
       <nav className="navbar">
         <div className="container">
 
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item display is-size-4">Upcycle Store</Link>
+          <div className="navbar-logo">
+            <Link to="/" ><img src="../../images/upcyclelogo.jpg" /></Link>
 
             <a
               role="button"
