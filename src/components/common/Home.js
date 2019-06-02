@@ -35,10 +35,22 @@ class Home extends React.Component{
                   {listing.description}
                 </div>
               </div>
-
             </div>
           </div>).slice(-1)}
+
+        <section className="hero is-danger home-section">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">
+                Start selling your upcycled creations
+              </h1>
+              <button className="button">Add a listing now</button>
+            </div>
+          </div>
+        </section>
+
         <div className="container">
+          <h2>New items for sale</h2>
           <section className="columns is-multiline">
             {this.state.data.map(listing =>
               <div key={listing.id} className="listing-wrapper column is-one-quarter">
@@ -46,6 +58,11 @@ class Home extends React.Component{
               </div>
             ).slice(-6, -2)}
           </section>
+          <div className="more-link">
+            <button className="button">
+              <Link to='/browse'>Browse all items</Link>
+            </button>
+          </div>
         </div>
       </div>
     )
