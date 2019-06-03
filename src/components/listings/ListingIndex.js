@@ -11,7 +11,9 @@ class ListingIndex extends React.Component{
     this.state = {
       data: [],
       categories: [],
-      filters: 'All'
+      filters: {
+        name: 'All'
+      }
     }
 
     this.toggleFilter = this.toggleFilter.bind(this)
@@ -36,15 +38,16 @@ class ListingIndex extends React.Component{
 
   //Filters the sorted locations on dropdown select==========
   filteredListings() {
-    const filter = this.state.filters.name
-    if (this.state.filters === 'All') return this.state.data
+    const filter = this.state.filters
+    if (this.state.filters.name === 'All') return this.state.data
+    console.log(this.state.filters, 'In function')
     return this.state.data.filter(category => {
-      return category.categories.indexOf(filter) > -1
+      console.log(category.categories.includes(filter))
     })
   }
 
   toggleFilter(filter){
-    this.setState({ filters: filter })
+    this.setState( { filters: { name: filter } })
   }
 
   render(){
@@ -54,19 +57,19 @@ class ListingIndex extends React.Component{
       <div className="container">
         <div className="filter-wrapper">
           <div
-            className={`filter-button${this.state.filters !== 'All' ? '' : ' highlighted' }`}
+            className={`filter-button${this.state.filters.name !== 'All' ? '' : ' highlighted' }`}
             onClick={() => this.toggleFilter('All')}>All</div>
           {this.sortedCategories().map(filter =>
             <div key={filter.id}
-              className={`filter-button${this.state.filters !== filter ? '' : ' highlighted' }`}
+              className={`filter-button${this.state.filters.name !== filter.name ? '' : ' highlighted' }`}
               id={filter.id}
-              onClick={() => this.toggleFilter(filter)}
+              onClick={() => this.toggleFilter(filter.name)}
             >{filter.name}</div>)}
         </div>
 
 
         <section className="columns is-multiline">
-          {this.state.data.map(listing =>
+          {this.filteredListings().map(listing =>
             <div key={listing.id} className="listing-wrapper column is-one-quarter">
               <ListingCard {...listing} />
             </div>

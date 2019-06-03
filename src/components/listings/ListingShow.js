@@ -14,7 +14,8 @@ class ListingShow extends React.Component{
       item: {
         quantity: null,
         item: null
-      }
+      },
+      modalShow: false
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -24,6 +25,11 @@ class ListingShow extends React.Component{
     axios.get(`/api/listings/${this.props.match.params.id}`)
       .then(res => this.setState({ listing: res.data }))
       .catch(err => console.log(err))
+  }
+
+  showModal(){
+    this.setState({ modalShow: true })
+    setTimeout(() => this.setState({ modalShow: false }), 1500)
   }
 
   // HANDLES CLICK ON THE ADD TO CART BUTTON ====================
@@ -40,16 +46,30 @@ class ListingShow extends React.Component{
           'Authorization': `Bearer ${token}`
         }
     })
-      .then(res => console.log(res))
+      .then(res => {
+        if(res.status === 201){
+          this.showModal()
+        }
+      })
       .catch(err => console.log(err))
   }
 
   render(){
     if(!this.state.listing) return null
     const {id, image, title, price, postage, description, user, num_available} = this.state.listing
+    console.log(this.state.modalShow)
 
     return(
       <div className="container">
+        {this.state.modalShow && <div className="modal is-active">
+          <div className="modal-background"></div>
+          <div className="modal-content">
+            <div className="modal-added-box"><div className="modal-added-text">
+            Added to cart</div>
+            </div>
+          </div>
+          <button className="modal-close is-large" aria-label="close"></button>
+        </div>}
         <section className="wrapper">
           <div className="columns is-6">
             <div className="column is-two-fifths-desktop listing-show-right-column">
@@ -82,15 +102,21 @@ class ListingShow extends React.Component{
                 <div className="add-basket-price">
                   £{price}
                 </div>
-                <div className="add-basket-button">
+                {Auth.isAuthenticated() && <button className="add-basket-button">
                   <div
                     data-itemid={id}
                     data-quantity="1"
                     onClick={this.handleClick}
                     className="add-basket-text">
-                    ADD TO BASKET
+                    ADD TO CART
                   </div>
-                </div>
+                </button>}
+                {!Auth.isAuthenticated() && <Link to="/login"><div className="add-basket-button disabled">
+                  <div
+                    className="add-basket-text">
+                    LOGIN TO BUY
+                  </div>
+                </div></Link>}
                 <div>
                   Postage: £{postage}
                 </div>

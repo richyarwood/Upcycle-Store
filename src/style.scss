@@ -44,6 +44,21 @@ a {
  button.button {
    background-color: $primarycolor;
    color: #fff;
+   box-shadow: $box-shadow;
+
+   &:active {
+     box-shadow: none;
+   }
+
+   &:hover {
+     color: #fff;
+   }
+
+   &:focus {
+     color: #fff;
+     border-color: none;
+   }
+
 
    &.check-out-button {
      margin-top: 10px;
@@ -193,6 +208,12 @@ section {
   padding: 40px 60px;
 }
 
+@media only screen and (max-width: 420px) {
+  .wrapper {
+    padding: 20px 10px;
+  }
+}
+
 .listing-show-title {
   font-family: $secondaryfont;
   font-size: 40px;
@@ -231,6 +252,12 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: $box-shadow;
+
+  &.disabled {
+    box-shadow: none;
+    background-color: #bdbdbd;
+  }
 
   .add-basket-text {
   font-family: $secondaryfont;
@@ -239,9 +266,29 @@ section {
   }
 }
 
+@media only screen and (max-width: 930px) {
+  .add-basket-button .add-basket-text {
+    font-size: 25px;
+  }
+}
+
 .add-basket-price {
   font-size: 40px;
   font-family: $secondaryfont;
+}
+
+.modal-added-box {
+  display: flex;
+  height: 200px;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+
+  .modal-added-text {
+    font-size: 50px;
+    color: $primarycolor;
+  }
 }
 
 .more-seller-title {
