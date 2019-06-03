@@ -38,11 +38,10 @@ class ListingIndex extends React.Component{
 
   //Filters the sorted locations on dropdown select==========
   filteredListings() {
-    const filter = this.state.filters
+    const filter = this.state.filters.name
     if (this.state.filters.name === 'All') return this.state.data
-    console.log(this.state.filters, 'In function')
     return this.state.data.filter(category => {
-      console.log(category.categories.includes(filter))
+      return category.categories.some(category => category.name === filter)
     })
   }
 
@@ -51,8 +50,8 @@ class ListingIndex extends React.Component{
   }
 
   render(){
-    console.log(this.state.data, 'Data')
     console.log(this.state.filters, 'Name')
+    console.log(this.filteredListings(), 'DATA')
     return(
       <div className="container">
         <div className="filter-wrapper">

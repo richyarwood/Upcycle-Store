@@ -78,6 +78,9 @@ class Cart extends React.Component{
               <div className="column">
               </div>
             </div>
+
+            {!this.state.data.length && <h3>You have not items in your cart<br />
+              <Link to='/browse'>Start shopping</Link></h3>}
             {this.state.data.map(cartItem =>
               <div key={cartItem.id}>
                 <hr />

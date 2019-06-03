@@ -59,6 +59,11 @@ a {
      border-color: none;
    }
 
+   &:visited {
+     color: #fff;
+     border-color: none;
+   }
+
 
    &.check-out-button {
      margin-top: 10px;
@@ -257,6 +262,24 @@ section {
   &.disabled {
     box-shadow: none;
     background-color: #bdbdbd;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+
+  &:focus {
+    color: #fff;
+    outline: 0;
+  }
+
+  &:visited {
+    color: #fff;
+    border-color: none;
   }
 
   .add-basket-text {

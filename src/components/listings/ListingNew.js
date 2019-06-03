@@ -9,7 +9,9 @@ class ListingNew extends React.Component{
     super()
 
     this.state = {
-      data: {},
+      data: {
+        category_ids: []
+      },
       errors: {}
     }
 
