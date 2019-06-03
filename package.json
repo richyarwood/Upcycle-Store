@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "run:client": "webpack-dev-server --mode=development",
-    "run:server": "pipenv run flask run --port 4000"
+    "run:server": "pipenv run flask run --port 4000",
+    "build": "webpack -p"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -17,6 +18,7 @@
     "babel-loader": "^8.0.6",
     "bluebird": "^3.5.5",
     "bulma": "^0.7.5",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
