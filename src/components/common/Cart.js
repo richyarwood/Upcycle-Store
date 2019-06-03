@@ -9,7 +9,8 @@ class Cart extends React.Component{
     super()
 
     this.state = {
-      data: []
+      data: [],
+      checkedOut: false
     }
 
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
@@ -24,18 +25,13 @@ class Cart extends React.Component{
       .catch(err => console.log(err))
   }
 
-
+  // CALCULATES THE SHOPPING CART TOTAL ============================
   calculatePrice(){
     const prices = this.state.data.map(element => element.item.price)
     return prices.reduce((a, b) => a + b, 0)
   }
 
-  calculatePostage(){
-    const postage = this.state.data.map(element => element.item)
-    return postage.reduce((a, b) => a + b, 0)
-  }
-
-
+  // DELETES AND ITEM FROM THE CART ===============================
   handleDeleteClick({ target: { id } }){
     axios.delete(`/api/cart_items/${id}`, {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
@@ -52,15 +48,36 @@ class Cart extends React.Component{
       .catch(err => console.log(err))
   }
 
+  // HANDLE CHECKOUT SHOPPING CART ===========================
   handleCheckoutClick(){
     axios.delete('/api/cart_checkout', {
       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
-    })
+    }
+    )
+      .then(() => this.setState({ data: [] })
+      )
+    this.showModal()
+  }
+
+  // SHOW CHECKED OUT MODAL ==================================
+  showModal(){
+    this.setState({ checkedOut: true })
+    setTimeout(() => this.setState({ checkedOut: false }), 1500)
   }
 
   render(){
+    console.log(this.state.data)
     return(
       <div className="container">
+        {this.state.checkedOut && <div className="modal is-active">
+          <div className="modal-background"></div>
+          <div className="modal-content">
+            <div className="modal-added-box"><div className="modal-added-text">
+            Thanks. Your items are on the way</div>
+            </div>
+          </div>
+          <button className="modal-close is-large" aria-label="close"></button>
+        </div>}
         <section className="wrapper">
           <h1>Cart</h1>
           <div className="cart-line-items-wrapper">
@@ -115,16 +132,24 @@ class Cart extends React.Component{
 
           </div>
           <hr />
-          <div className="cart-total-checkout-wrapper">
-
+          {!this.state.data.length && <div className="cart-total-checkout-wrapper">
             <div className="cart-total-checkout">
-              Total: £{this.calculatePrice()}
+              <button
+                className="button check-out-button disabled">
+                  CHECKOUT
+              </button>
+            </div>
+          </div>}
+
+          {this.state.data.length &&  <div className="cart-total-checkout-wrapper">
+            <div className="cart-total-checkout">
+            Total: £{this.calculatePrice()}
               <button
                 className="button check-out-button" onClick={this.handleCheckoutClick}>
                   CHECKOUT
               </button>
             </div>
-          </div>
+          </div>}
         </section>
       </div>
     )

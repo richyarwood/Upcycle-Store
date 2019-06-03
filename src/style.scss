@@ -68,6 +68,11 @@ a {
    &.check-out-button {
      margin-top: 10px;
    }
+
+   &.disabled {
+     box-shadow: none;
+     background-color: #bdbdbd;
+   }
  }
 
 // NAVBAR ======================================
@@ -307,6 +312,7 @@ section {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  padding: 30px;
 
   .modal-added-text {
     font-size: 50px;

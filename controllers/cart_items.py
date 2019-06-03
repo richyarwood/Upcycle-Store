@@ -1,4 +1,4 @@
-from pony.orm import db_session
+from pony.orm import db_session, delete
 from flask import Blueprint, request, g, jsonify, abort
 from models.CartItem import CartItem, CartItemSchema
 from marshmallow import ValidationError
@@ -17,7 +17,6 @@ def index():
 
 
 # CREATE A CART ITEM ====================================
-
 @router.route('/cart_items', methods=['POST'])
 @db_session
 @secure_route
@@ -35,7 +34,6 @@ def create():
     return schema.dumps(cart_item), 201
 
 # GET USER CART ITEMS ======================================
-
 @router.route('/cart', methods=['GET'])
 @db_session
 @secure_route
@@ -47,11 +45,11 @@ def get_cart():
     return schema.dumps(usercart)
 
 # DELETE CART ITEM =========================================
-
 @router.route('/cart_items/<int:item_id>', methods=['DELETE'])
 @db_session
 @secure_route
-def delete(item_id):
+def delete_item(item_id):
+    print('=========== DELETE ITEM ============')
     item = CartItem.get(id=item_id)
 
     if not item:
@@ -67,6 +65,6 @@ def delete(item_id):
 @db_session
 @secure_route
 def clear_cart():
-
+    print('========== EMPTY CART ===========')
     delete(item for item in CartItem if item.user == g.current_user)
     return '', 204

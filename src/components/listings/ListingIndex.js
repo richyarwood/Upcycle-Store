@@ -50,8 +50,6 @@ class ListingIndex extends React.Component{
   }
 
   render(){
-    console.log(this.state.filters, 'Name')
-    console.log(this.filteredListings(), 'DATA')
     return(
       <div className="container">
         <div className="filter-wrapper">
