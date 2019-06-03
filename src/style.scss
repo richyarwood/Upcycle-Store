@@ -91,11 +91,13 @@ a {
   }
 }
 
-.navbar-logo {
-  display: flex;
+.navbar-brand {
   align-items: center;
-  width: 150px;
-  margin-right: 10px;
+
+  img {
+    width: 150px;
+    margin-right: 10px;
+  }
 }
 
 // HOME AND FOOTER =============================

@@ -30,10 +30,10 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="container">
 
-          <div className="navbar-logo">
+          <div className="navbar-brand">
             <Link to="/" ><img src="../../images/upcyclelogo.jpg" /></Link>
 
             <a
