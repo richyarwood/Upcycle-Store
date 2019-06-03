@@ -67,8 +67,6 @@ class ListingNew extends React.Component{
 
   render(){
     if(!this.state.categories) return null
-    console.log(this.state.data)
-    console.log(this.state.category_ids)
     return(
       <div className="container">
         <div className="form-wrapper">
@@ -119,8 +117,8 @@ class ListingNew extends React.Component{
                 <label className="label">Number available</label>
                 <div className="control">
                   <div className="select">
-                    <select name="num_available" value="selectone" onChange={this.handleChange}>
-                      <option value="selectone" disabled>Select one</option>
+                    <select name="num_available" onChange={this.handleChange}>
+                      <option selected value="selectone" disabled>Select one</option>
                       <option value="1">1</option>
                       <option value="5">5</option>
                       <option value="10">10</option>
