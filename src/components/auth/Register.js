@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class Register extends React.Component {
 
@@ -89,6 +90,7 @@ class Register extends React.Component {
               </div>
               <button className="button">Submit</button>
             </form>
+            <p>Got an account? <Link to='/login'>Login and start shopping</Link>.</p>
           </div>
         </div>
       </div>

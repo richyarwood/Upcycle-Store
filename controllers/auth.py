@@ -28,7 +28,7 @@ def register():
         'token': user.generate_token()
     })
 
-
+# LOGIN USER =====================================================
 @router.route('/login', methods=['POST'])
 @db_session
 def login():

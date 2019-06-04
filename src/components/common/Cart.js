@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShippingFast } from '@fortawesome/free-solid-svg-icons'
+
 import axios from 'axios'
 
 class Cart extends React.Component{
@@ -73,7 +76,10 @@ class Cart extends React.Component{
           <div className="modal-background"></div>
           <div className="modal-content">
             <div className="modal-added-box"><div className="modal-added-text">
-            Thanks. Your items are on the way</div>
+              <p>Thanks.</p>
+              <p>Your items are on the way</p>
+              <p><FontAwesomeIcon icon={faShippingFast} /></p>
+            </div>
             </div>
           </div>
           <button className="modal-close is-large" aria-label="close"></button>

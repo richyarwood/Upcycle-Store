@@ -28,7 +28,7 @@ class ListingIndex extends React.Component{
       )
   }
 
-  // APPLIES A-Z SORT FOR CATEGORIES ===========================
+  // APPLIES A-Z SORT FOR CATEGORIES =========================
   sortedCategories() {
     return this.state.categories.sort((a, b) => {
       if (a.name === b.name) return 0
@@ -36,21 +36,23 @@ class ListingIndex extends React.Component{
     })
   }
 
-  sortedListing() {
+  // PUTS THE LISTINGS IN TO DESCENDING ORDER OF ID ==========
+  sortedListings() {
     return this.state.data.sort((a, b) => {
       return b.id - a.id
     })
   }
 
-  //Filters the sorted locations on dropdown select==========
+  //FILTERS THS LISTINGS BASED ON THE SELECTED FILTER =======
   filteredListings() {
     const filter = this.state.filters.name
-    if (this.state.filters.name === 'All') return this.sortedListing()
-    return this.sortedListing().filter(category => {
+    if (this.state.filters.name === 'All') return this.sortedListings()
+    return this.sortedListings().filter(category => {
       return category.categories.some(category => category.name === filter)
     })
   }
 
+  // CONTROLS THE FILTER STATE ==============================
   toggleFilter(filter){
     this.setState( { filters: { name: filter } })
   }
@@ -70,7 +72,6 @@ class ListingIndex extends React.Component{
             >{filter.name}</div>)}
         </div>
 
-
         <section className="columns is-multiline">
           {this.filteredListings().map(listing =>
             <div key={listing.id} className="listing-wrapper column is-one-quarter">
@@ -78,7 +79,6 @@ class ListingIndex extends React.Component{
             </div>
           )}
         </section>
-
 
       </div>
     )

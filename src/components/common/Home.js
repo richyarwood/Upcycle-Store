@@ -14,12 +14,12 @@ class Home extends React.Component{
     }
   }
 
-
   componentDidMount(){
     axios.get('/api/listings')
       .then(res => this.setState({ data: res.data }))
   }
 
+  // SORTS THE LISINGS IN TO DESCENDING ORDER BY ID ==========
   sortedListing() {
     return this.state.data.sort((a, b) => {
       return b.id - a.id
@@ -28,12 +28,8 @@ class Home extends React.Component{
 
   render(){
     if(!this.state.data) return null
-    console.log(this.state.data)
-    console.log(this.sortedListing(), 'SORTED')
     return(
       <div>
-
-
         <section className="hero is-danger home-section">
           <div className="hero-body">
             <div className="container">
@@ -49,7 +45,7 @@ class Home extends React.Component{
           <h2>New items for sale</h2>
           <section className="columns is-multiline">
             {this.sortedListing().map(listing =>
-              <div key={listing.id} className="listing-wrapper column is-one-quarter">
+              <div key={listing.id} className="listing-wrapper column is-half-tablet is-one-quarter-desktop">
                 <ListingCard {...listing} />
               </div>
             ).slice(0, 4)}

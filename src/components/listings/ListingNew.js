@@ -96,7 +96,7 @@ class ListingNew extends React.Component{
               </div>
               {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
             </div>
-            <div className="columns">
+            <div className="columns is-mobile">
 
               <div className="field column is-one-half">
                 <label className="label">Categories<br /> (select one or more)</label>

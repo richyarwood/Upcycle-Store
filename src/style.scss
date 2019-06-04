@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Muli|Open+Sans:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Knewave&display=swap');
 
 $primarycolor: #ff3b3f;
 $secondarycolor: #a9a9a9;
@@ -8,6 +9,7 @@ $box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 
 $primaryfont: 'Open Sans', sans-serif;
 $secondaryfont: 'Muli', sans-serif;
+$tertiaryfont: 'Knewave', cursive;
 
 * {
   box-sizing: border-box;
@@ -22,6 +24,16 @@ body {
 main {
   height: 100%;
   background-color: $tertiarycolor;
+}
+
+.container {
+  padding: 0 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 0 10px;
+  }
 }
 
 h1 {
@@ -93,10 +105,24 @@ a {
 
 .navbar-brand {
   align-items: center;
+  font-family: $tertiaryfont;
+  font-size: 40px;
+  padding-right: 20px;
 
-  img {
-    width: 150px;
-    margin-right: 10px;
+  a:hover {
+    color: $primarycolor;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-brand {
+    padding-right: 0;
+    font-size: 30px;
+  }
+
+  .navbar {
+    height: 60px;
+    padding-left: 10px;
   }
 }
 
@@ -165,10 +191,10 @@ section {
   &.home-section {
     margin-bottom: 30px;
   }
+
 }
 
 .listing-wrapper {
-  width: 350px;
   font-weight: normal;
   background-color: #fff;
   border-right: solid 1px #efefef;
@@ -183,6 +209,10 @@ section {
   line-height: 1.2rem;
   margin: 5px 0 10px 0;
 
+}
+
+.listing-image {
+  text-align: center;
 }
 
 .listing-price {
@@ -220,7 +250,7 @@ section {
   padding: 40px 60px;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 600px) {
   .wrapper {
     padding: 20px 10px;
   }
@@ -234,12 +264,29 @@ section {
   line-height: 45px;
 }
 
+.listing-show-image {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
 .listing-show-right-column {
   margin-right: 70px;
 }
 
+@media only screen and (max-width: 600px) {
+  .listing-show-right-column {
+    margin-right: 0px;
+  }
+}
+
 .listing-show-item-info {
   font-size: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+  .seller-similar {
+    display: none;
+  }
 }
 
 .add-basket-container {
@@ -317,8 +364,9 @@ section {
   padding: 30px;
 
   .modal-added-text {
-    font-size: 50px;
+    font-size: 40px;
     color: $primarycolor;
+    text-align: center;
   }
 }
 
@@ -371,6 +419,11 @@ section {
 }
 
  // FORMS ===============================
+
+form {
+  margin-bottom: 10px;
+}
+
 .form-wrapper {
   max-width: 500px;
   margin: 20px auto;
@@ -380,8 +433,20 @@ section {
   margin-bottom: 80px;
 }
 
+@media only screen and (max-width: 600px) {
+  .form-wrapper {
+    margin: 0;
+  }
+}
+
 .form-title {
     padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-title {
+    font-size: 30px;
+  }
 }
 
 label {

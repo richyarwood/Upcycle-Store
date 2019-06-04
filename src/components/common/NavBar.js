@@ -2,6 +2,9 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
 class Navbar extends React.Component {
 
   constructor(props) {
@@ -29,12 +32,13 @@ class Navbar extends React.Component {
   }
 
   render() {
+    console.log(Auth.getPayload())
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="container">
 
           <div className="navbar-brand">
-            <Link to="/" ><img src="../../images/upcyclelogo.jpg" /></Link>
+            <Link to="/" >Upcycle Store</Link>
 
             <a
               role="button"
@@ -58,8 +62,9 @@ class Navbar extends React.Component {
             <div className="navbar-end">
               {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item">Register</Link>}
               {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item">Login</Link>}
+              {Auth.isAuthenticated() && <div className="navbar-item">Welcome back</div>}
               {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}
-              {Auth.isAuthenticated() && <Link to="/cart"  className="navbar-item">Cart</Link>}
+              {Auth.isAuthenticated() && <Link to="/cart"  className="navbar-item"><FontAwesomeIcon icon={faShoppingCart} /></Link>}
             </div>
           </div>
         </div>

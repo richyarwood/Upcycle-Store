@@ -2,6 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+
 import Auth from '../../lib/Auth'
 
 class ListingShow extends React.Component{
@@ -71,7 +74,7 @@ class ListingShow extends React.Component{
           <div className="modal-background"></div>
           <div className="modal-content">
             <div className="modal-added-box"><div className="modal-added-text">
-            Added to cart</div>
+            Added to cart<br /> <FontAwesomeIcon icon={faCartPlus} /></div>
             </div>
           </div>
           <button className="modal-close is-large" aria-label="close"></button>
@@ -79,21 +82,24 @@ class ListingShow extends React.Component{
         <section className="wrapper">
           <div className="columns is-6">
             <div className="column is-two-fifths-desktop listing-show-right-column">
-              <img className="listing-show_image" src={image} alt={title}/>
-              <h2>All items from this seller</h2>
-              {this.state.listing.user.listings.map(listing =>
-                <div key={listing.id} className="columns seller-similar">
-                  <div className="column is-one-third">
-                    <Link to={`/listings/${listing.id}`}><img src={listing.image} alt={listing.title}/></Link>
+              <div className="listing-show-image">
+                <img src={image} alt={title}/>
+              </div>
+              <div className="seller-similar">
+                <h2>All items from this seller</h2>
+                {this.state.listing.user.listings.map(listing =>
+                  <div key={listing.id} className="columns">
+                    <div className="column is-one-third">
+                      <Link to={`/listings/${listing.id}`}><img src={listing.image} alt={listing.title}/></Link>
+                    </div>
+                    <div className="column more-seller-title">
+                      <Link to={`/listings/${listing.id}`}
+                        onClick={this.reloadPage}>{listing.title}</Link>
+                      <div>£{listing.price}</div>
+                    </div>
                   </div>
-                  <div className="column more-seller-title">
-                    <Link to={`/listings/${listing.id}`}
-                      onClick={this.reloadPage}>{listing.title}</Link>
-                    <div>£{listing.price}</div>
-                  </div>
-
-                </div>
-              )}
+                )}
+              </div>
             </div>
             <div className="column">
               <h1 className="listing-show-title">
