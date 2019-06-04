@@ -36,7 +36,6 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="container form-wrapper">
         <div className="columns is-centered">

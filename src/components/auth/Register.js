@@ -30,8 +30,6 @@ class Register extends React.Component {
   }
 
   render() {
-    console.log(this.state.data)
-    console.log(this.state.errors)
     return (
       <div className="container form-wrapper">
         <div className="columns is-centered">

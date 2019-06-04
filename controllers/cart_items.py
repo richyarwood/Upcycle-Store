@@ -49,7 +49,6 @@ def get_cart():
 @db_session
 @secure_route
 def delete_item(item_id):
-    print('=========== DELETE ITEM ============')
     item = CartItem.get(id=item_id)
 
     if not item:
@@ -65,6 +64,5 @@ def delete_item(item_id):
 @db_session
 @secure_route
 def clear_cart():
-    print('========== EMPTY CART ===========')
     delete(item for item in CartItem if item.user == g.current_user)
     return '', 204

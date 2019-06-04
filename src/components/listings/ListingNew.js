@@ -165,7 +165,6 @@ class ListingNew extends React.Component{
             <button className="button">Add listing</button>
           </form>
         </div>
-
       </div>
     )
   }

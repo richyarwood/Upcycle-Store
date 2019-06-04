@@ -69,7 +69,6 @@ class Cart extends React.Component{
   }
 
   render(){
-    console.log(this.state.data)
     return(
       <div className="container">
         {this.state.checkedOut && <div className="modal is-active">
