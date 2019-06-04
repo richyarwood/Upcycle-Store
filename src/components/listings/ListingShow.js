@@ -23,10 +23,19 @@ class ListingShow extends React.Component{
     }
 
     this.handleClick = this.handleClick.bind(this)
-    this.reloadPage = this.reloadPage.bind(this)
   }
 
   componentDidMount(){
+    this.loadListing()
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.match.params.id !== this.props.match.params.id) {
+      this.loadListing()
+    }
+  }
+
+  loadListing() {
     axios.get(`/api/listings/${this.props.match.params.id}`)
       .then(res => this.setState({ listing: res.data }))
       .catch(err => console.log(err))
@@ -59,11 +68,6 @@ class ListingShow extends React.Component{
       .catch(err => console.log(err))
   }
 
-  reloadPage(){
-    axios.get(`/api/listings/${this.props.match.params.id}`)
-      .then(res => this.setState({ listing: res.data }))
-  }
-
   render(){
     if(!this.state.listing) return null
     const {id, image, title, price, postage, description, user, num_available} = this.state.listing
@@ -73,14 +77,17 @@ class ListingShow extends React.Component{
         {this.state.modalShow && <div className="modal is-active">
           <div className="modal-background"></div>
           <div className="modal-content">
-            <div className="modal-added-box"><div className="modal-added-text">
-            Added to cart<br /> <FontAwesomeIcon icon={faCartPlus} /></div>
+            <div className="modal-added-box">
+              <div className="modal-added-text">
+                <p><FontAwesomeIcon icon={faCartPlus} /></p>
+                <p>Added to cart</p>
+              </div>
             </div>
           </div>
           <button className="modal-close is-large" aria-label="close"></button>
         </div>}
         <section className="wrapper">
-          <div className="columns is-6">
+          <div className="columns">
             <div className="column is-two-fifths-desktop listing-show-right-column">
               <div className="listing-show-image">
                 <img src={image} alt={title}/>
@@ -89,12 +96,11 @@ class ListingShow extends React.Component{
                 <h2>All items from this seller</h2>
                 {this.state.listing.user.listings.map(listing =>
                   <div key={listing.id} className="columns">
-                    <div className="column is-one-third">
+                    <div className="column is-three-fifths-desktop">
                       <Link to={`/listings/${listing.id}`}><img src={listing.image} alt={listing.title}/></Link>
                     </div>
                     <div className="column more-seller-title">
-                      <Link to={`/listings/${listing.id}`}
-                        onClick={this.reloadPage}>{listing.title}</Link>
+                      <Link to={`/listings/${listing.id}`}>{listing.title}</Link>
                       <div>£{listing.price}</div>
                     </div>
                   </div>

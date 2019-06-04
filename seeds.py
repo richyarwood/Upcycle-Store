@@ -42,6 +42,36 @@ with db_session():
         password_hash=user_schema.generate_hash('pass')
     )
 
+    user6 = User(
+        username='Tony',
+        email='tony@email.com',
+        password_hash=user_schema.generate_hash('pass')
+    )
+
+    user7 = User(
+        username='Adam',
+        email='adam@email.com',
+        password_hash=user_schema.generate_hash('pass')
+    )
+
+    user8 = User(
+        username='Mike',
+        email='mike@email.com',
+        password_hash=user_schema.generate_hash('pass')
+    )
+
+    user9 = User(
+        username='Peter',
+        email='peter@email.com',
+        password_hash=user_schema.generate_hash('pass')
+    )
+
+    user10 = User(
+        username='Charlotte',
+        email='charlotte@email.com',
+        password_hash=user_schema.generate_hash('pass')
+    )
+
     household = Category(name='Household')
     toys = Category(name='Toys')
     garden = Category(name='Garden')
@@ -141,6 +171,28 @@ with db_session():
         num_available=1,
         categories=[household, furniture],
         user=user5,
+    )
+
+    Listing(
+        title='Malt Tote bag',
+        image='https://alchemistbeer.com/wp-content/uploads/2017/07/malt_tote_01.jpg',
+        description='Oversized tote made from our malt bags by Vermont Artist Recycle Moe. Boxy bottom, sturdy straps, Alchemist logo patch. Approximate dimensions: 16″ W x 12″ H x 10″ D',
+        price=8.00,
+        postage=2.50,
+        num_available=20,
+        categories=[bags],
+        user=user10,
+    )
+
+    Listing(
+        title='Crossbody purse, recycled denim bag',
+        image='https://i.pinimg.com/originals/91/f1/e0/91f1e070815cb7af910b0fe14b2e9528.jpg',
+        description='This cross body bag is made out of a jean pant. It has a V-shape opening, and wider base with pleating. This bag is fully lined with a pale yellow and green cotton print. It features 2 exterior pockets on the front side ,and 2 interior pockets. Metal button and fabric loop keep the opening closed. Metal slider provides different options for strap length.',
+        price=15.00,
+        postage=4.50,
+        num_available=2,
+        categories=[bags],
+        user=user6,
     )
 
 

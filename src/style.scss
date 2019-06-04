@@ -370,6 +370,12 @@ section {
   }
 }
 
+@media only screen and (max-width: 930px) {
+  .modal-added-box .modal-added-text {
+    font-size: 33px;
+  }
+}
+
 .more-seller-title {
   font-size: 18px;
 }
@@ -415,6 +421,24 @@ section {
   .cart-total-checkout {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .cart-labels {
+    display: none;
+  }
+
+  .cart-item-image {
+    display:none;
+  }
+
+  .cart-line-item .cart-line-item-content {
+    font-size: 15px;
+  }
+
+  .cart-line-item-title {
+    font-size: 15px;
   }
 }
 

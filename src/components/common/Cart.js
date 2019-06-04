@@ -76,9 +76,9 @@ class Cart extends React.Component{
           <div className="modal-background"></div>
           <div className="modal-content">
             <div className="modal-added-box"><div className="modal-added-text">
+              <p><FontAwesomeIcon icon={faShippingFast} /></p>
               <p>Thanks.</p>
               <p>Your items are on the way</p>
-              <p><FontAwesomeIcon icon={faShippingFast} /></p>
             </div>
             </div>
           </div>
@@ -87,10 +87,10 @@ class Cart extends React.Component{
         <section className="wrapper">
           <h1>Cart</h1>
           <div className="cart-line-items-wrapper">
-            <div className="columns">
-              <div className="column is-one-fifth">
+            <div className="columns cart-labels">
+              <div className="column">
               </div>
-              <div className="column is-two-fifths">
+              <div className="column is-two-fifths-desktop">
               </div>
               <div className="column">
                 <strong>Quantity</strong>
@@ -107,11 +107,11 @@ class Cart extends React.Component{
             {this.state.data.map(cartItem =>
               <div key={cartItem.id}>
                 <hr />
-                <div className="columns cart-line-item">
-                  <div className="column is-one-fifth">
+                <div className="columns cart-line-item is-mobile">
+                  <div className="column cart-item-image">
                     <img src={cartItem.item.image} alt={cartItem.item.title} />
                   </div>
-                  <div className="column is-two-fifths cart-line-item-content">
+                  <div className="column is-two-fifths-mobile is-two-fifths-desktop cart-line-item-content">
 
                     <Link to={`/listings/${cartItem.item.id}`}>{cartItem.item.title}</Link>
 
