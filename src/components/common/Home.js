@@ -20,8 +20,16 @@ class Home extends React.Component{
       .then(res => this.setState({ data: res.data }))
   }
 
+  sortedListing() {
+    return this.state.data.sort((a, b) => {
+      return b.id - a.id
+    })
+  }
+
   render(){
+    if(!this.state.data) return null
     console.log(this.state.data)
+    console.log(this.sortedListing(), 'SORTED')
     return(
       <div>
 
@@ -40,11 +48,11 @@ class Home extends React.Component{
         <div className="container">
           <h2>New items for sale</h2>
           <section className="columns is-multiline">
-            {this.state.data.map(listing =>
+            {this.sortedListing().map(listing =>
               <div key={listing.id} className="listing-wrapper column is-one-quarter">
                 <ListingCard {...listing} />
               </div>
-            ).slice(-5, -1)}
+            ).slice(0, 4)}
           </section>
           <div className="more-link">
             <button className="button">

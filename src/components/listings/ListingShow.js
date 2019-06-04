@@ -15,10 +15,12 @@ class ListingShow extends React.Component{
         quantity: null,
         item: null
       },
-      modalShow: false
+      modalShow: false,
+      similarClicked: false
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.reloadPage = this.reloadPage.bind(this)
   }
 
   componentDidMount(){
@@ -54,10 +56,14 @@ class ListingShow extends React.Component{
       .catch(err => console.log(err))
   }
 
+  reloadPage(){
+    axios.get(`/api/listings/${this.props.match.params.id}`)
+      .then(res => this.setState({ listing: res.data }))
+  }
+
   render(){
     if(!this.state.listing) return null
     const {id, image, title, price, postage, description, user, num_available} = this.state.listing
-    console.log(this.state.modalShow)
 
     return(
       <div className="container">
@@ -81,7 +87,8 @@ class ListingShow extends React.Component{
                     <Link to={`/listings/${listing.id}`}><img src={listing.image} alt={listing.title}/></Link>
                   </div>
                   <div className="column more-seller-title">
-                    <Link to={`/listings/${listing.id}`}>{listing.title}</Link>
+                    <Link to={`/listings/${listing.id}`}
+                      onClick={this.reloadPage}>{listing.title}</Link>
                     <div>£{listing.price}</div>
                   </div>
 

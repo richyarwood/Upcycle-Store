@@ -36,11 +36,17 @@ class ListingIndex extends React.Component{
     })
   }
 
+  sortedListing() {
+    return this.state.data.sort((a, b) => {
+      return b.id - a.id
+    })
+  }
+
   //Filters the sorted locations on dropdown select==========
   filteredListings() {
     const filter = this.state.filters.name
-    if (this.state.filters.name === 'All') return this.state.data
-    return this.state.data.filter(category => {
+    if (this.state.filters.name === 'All') return this.sortedListing()
+    return this.sortedListing().filter(category => {
       return category.categories.some(category => category.name === filter)
     })
   }
