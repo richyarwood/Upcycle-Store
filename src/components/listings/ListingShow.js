@@ -29,6 +29,7 @@ class ListingShow extends React.Component{
     this.loadListing()
   }
 
+  // Refreshes the page when user clicks similar listing ==========
   componentDidUpdate(prevProps) {
     if(prevProps.match.params.id !== this.props.match.params.id) {
       this.loadListing()
