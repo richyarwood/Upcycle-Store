@@ -173,6 +173,7 @@ a {
     border-radius: 20px;
     border: 1px solid $primarycolor;
     margin: 5px 10px;
+    cursor: pointer;
 
     &.highlighted {
       background-color: $primarycolor;
