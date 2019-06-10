@@ -22,7 +22,6 @@ def index():
 @secure_route
 def create():
     schema = CartItemSchema()
-    print(g.current_user)
     try:
         data = schema.load(request.get_json())
         cart_item = CartItem(**data, user=g.current_user)
@@ -33,6 +32,7 @@ def create():
 
     return schema.dumps(cart_item), 201
 
+# ***************
 # GET USER CART ITEMS ======================================
 @router.route('/cart', methods=['GET'])
 @db_session
@@ -44,6 +44,7 @@ def get_cart():
 
     return schema.dumps(usercart)
 
+#  ****************
 # DELETE CART ITEM =========================================
 @router.route('/cart_items/<int:item_id>', methods=['DELETE'])
 @db_session
