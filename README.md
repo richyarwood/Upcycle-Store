@@ -11,7 +11,7 @@
 * Ajax
 * JavaScript (ES6)
 * Python
-* Postgres
+* PostgreSQL
 * Flask
 * HTML5
 * Bulma (CSS framework)
