@@ -22,7 +22,7 @@
 This was a sole-coding project and the final project for the software engineering immersive course.
 
 The brief was to:
-* Create an application with a Python/Flask/Postgres backend and a React front-end utilising Webpack.
+* Create an application with a Python/Flask/PostgreSQL backend and a React front-end utilising Webpack.
 * The application had to include APIs to enable a user to register, login and add content.
 
 The site is deployed to Heroku at http://upcyclestore.herokuapp.com.
@@ -39,7 +39,7 @@ I realised that to build a complete ecommerce platform was a challenging task in
 
 The project started with an entity relationship diagram (ERD) and I used Sketch and Zeplin to wireframe and design.
 
-The site has a Python/Postgres backend and a React front end. Based on the ERD and wireframes I built the data models and used Flask to provide the API framework. Before building the front end I tested the API endpoints using Insomnia.
+The site has a Python/PostgreSQL backend and a React front end. Based on the ERD and wireframes I built the data models and used Flask to provide the API framework. Before building the front end I tested the API endpoints using Insomnia.
 
 The shopping cart items had a one-to-many relationship with both the user and the listings. This caused a number of issues with recursion, but this was resolved by excluding data within some endpoints.
 
@@ -52,7 +52,7 @@ Endpoints were built out for:
 * Listings - (GET, POST, DELETE)
 * Cart items - (GET, POST, DELETE)
 
-The endpoints for the cart items were more complex as I needed one to retrieve all items for a user:
+The endpoints for the cart items were more complex as I needed to retrieve all items for a user:
 
 ```
 @router.route('/cart', methods=['GET'])
